@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ITShop - Меню</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #e0ffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .btn-class-name {
+            --color: 250, 255, 100;
+            border-radius: 0.5em;
+            transition: 0.3s;
+            background-color: rgba(var(--color), 0.2);
+            color: rgb(var(--color));
+            fill: rgb(var(--color));
+            font-family: monospace;
+            font-weight: bolder;
+            font-size: x-large;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border: 2px solid rgb(var(--color));
+            box-shadow: 0 0 10px rgba(var(--color), 0.4);
+            outline: none;
+            display: flex;
+            align-items: center;
+            padding: 0.5em 1em;
+            text-decoration: none;
+            color: inherit;
+        }
+        .btn-class-name:hover {
+            box-shadow: 0 0 0 5px rgba(var(--color), 0.5);
+        }
+        .btn-class-name span {
+            transform: scale(0.8);
+            transition: 0.3s;
+        }
+        .btn-class-name:hover span {
+            transform: scale(1);
+        }
+        .btn-class-name svg {
+            font-size: 0;
+            transform: scale(0.5) translateX(0%) rotate(-180deg);
+            transition: 0.3s;
+        }
+        .btn-class-name:hover svg {
+            font-size: 20px;
+            transform: scale(1) translateX(20%) rotate(0deg);
+        }
+        .btn-class-name:active {
+            transition: 0s;
+            box-shadow: 0 0 0 5px rgb(var(--color));
+        }
+        .button-container img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <a href="main.html" class="btn-class-name">
+            <img src="https://cdn-icons-png.flaticon.com/256/1946/1946488.png" alt="Головна" />
+            <span>Головна</span>
+        </a>
+        <a href="shop.html" class="btn-class-name">
+            <img src="https://cdn-icons-png.flaticon.com/256/1374/1374158.png" alt="Магазин" />
+            <span>Магазин</span>
+        </a>
+        <a href="cart.html" class="btn-class-name">
+            <img src="https://cdn-icons-png.flaticon.com/256/1761/1761355.png" alt="Кошик" />
+            <span>Кошик</span>
+        </a>
+        <a href="chat.html" class="btn-class-name">
+            <img src="https://cdn-icons-png.flaticon.com/256/3461/3461298.png" alt="ЧатБот" />
+            <span>ЧатБот</span>
+        </a>
+        <a href="delivery.html" class="btn-class-name">
+            <img src="https://cdn-icons-png.flaticon.com/256/2991/2991152.png" alt="Доставка" />
+            <span>Доставка</span>
+        </a>
+        <a href="calculator.html" class="btn-class-name">
+            <img src="https://via.placeholder.com/150" alt="Калькулятор" />
+            <span>Калькулятор</span>
+        </a>
+    </div>
+</body>
+</html>

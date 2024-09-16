@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Магазин - ITShop</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #e0ffff;
+				margin: 0;
+				padding: 0;
+			}
+			.header {
+				background-color: #6495ed;
+				color: white;
+				padding: 20px;
+				text-align: center;
+			}
+			.header h1 {
+				margin: 0;
+			}
+			.content {
+				padding: 20px;
+				max-width: 900px;
+				margin: auto;
+			}
+			.content h2 {
+				font-size: 2em;
+				margin-bottom: 10px;
+			}
+			.content p {
+				font-size: 1.2em;
+				line-height: 1.6;
+				margin-bottom: 20px;
+			}
+			.btn-class-name {
+				--color: 255, 255, 255;
+				border-radius: 0.5em;
+				transition: 0.3s;
+				background-color: #007bff;
+				color: var(--color);
+				fill: var(--color);
+				font-family: Arial, sans-serif;
+				font-weight: bolder;
+				font-size: x-large;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				cursor: pointer;
+				border: 2px solid #0056b3;
+				box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+				outline: none;
+				display: flex;
+				align-items: center;
+				padding: 0.5em 1em;
+				text-decoration: none;
+			}
+			.btn-class-name:hover {
+				background-color: #0056b3;
+				box-shadow: 0 0 0 5px rgba(0, 123, 255, 0.5);
+			}
+			.btn-class-name span {
+				transform: scale(0.8);
+				transition: 0.3s;
+			}
+			.btn-class-name:hover span {
+				transform: scale(1);
+			}
+			.btn-class-name svg {
+				font-size: 0;
+				transform: scale(0.5) translateX(0%) rotate(-180deg);
+				transition: 0.3s;
+			}
+			.btn-class-name:hover svg {
+				font-size: 20px;
+				transform: scale(1) translateX(20%) rotate(0deg);
+			}
+			.btn-class-name:active {
+				transition: 0s;
+				box-shadow: 0 0 0 5px rgb(var(--color));
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<h1>ITShop</h1>
+		</div>
+		<div class="content">
+			<h2>Вітаємо вас в ITShop!</h2>
+			<p>
+				У нашому магазині ви знайдете найсучасніші та найякісніші електронні
+				пристрої та аксесуари. Ми пропонуємо широкий асортимент продукції,
+				включаючи ноутбуки, планшети, смартфони та багато іншого, що відповідає
+				найвищим стандартам якості та інновацій.
+			</p>
+			<p>
+				Наші продукти проходять строгий контроль якості, і ми гарантуємо їхню
+				відповідність найсучаснішим технологічним вимогам. Ми прагнемо
+				забезпечити вам найкращий досвід покупок завдяки зручному інтерфейсу
+				сайту, швидкій обробці замовлень та відмінному обслуговуванню клієнтів.
+			</p>
+			<p>
+				ITShop - це ваш надійний партнер у світі технологій. Ми завжди готові
+				допомогти вам знайти те, що вам потрібно, і надати підтримку на кожному
+				етапі покупки. Переконайтесь самі, чому наші клієнти обирають нас знову
+				і знову!
+			</p>
+			<a href="index.html" class="btn-class-name">
+				<span>Повернутися на головну</span>
+				<svg
+					viewBox="0 0 320 512"
+					height="1em"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<path
+						d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"
+					></path>
+				</svg>
+			</a>
+		</div>
+	</body>
+</html>

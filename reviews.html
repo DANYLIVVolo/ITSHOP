@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ITShop - Відгуки</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #6495ed;
+				font-family: Arial, sans-serif;
+				color: white;
+			}
+
+			.navbar {
+				position: fixed;
+				top: 0;
+				width: 100%;
+				background-color: rgba(0, 0, 0, 0.8);
+				padding: 10px 0;
+				text-align: center;
+				z-index: 1000;
+			}
+
+			.navbar a {
+				color: white;
+				text-decoration: none;
+				margin: 0 15px;
+				font-size: 1.2em;
+			}
+
+			.content {
+				padding-top: 60px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				height: 90vh;
+			}
+
+			.welcome-container {
+				background-color: rgba(255, 255, 255, 0.2);
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+				text-align: center;
+			}
+
+			.btn-class-name {
+				--color: 250, 255, 100;
+				border-radius: 0.5em;
+				transition: 0.3s;
+				background-color: rgba(var(--color), 0.2);
+				color: rgb(var(--color));
+				fill: rgb(var(--color));
+				font-family: monospace;
+				font-weight: bolder;
+				font-size: x-large;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				cursor: pointer;
+				border: 2px solid rgb(var(--color));
+				box-shadow: 0 0 10px rgba(var(--color), 0.4);
+				outline: none;
+				display: flex;
+				align-items: center;
+				padding: 0.5em 1em;
+				text-decoration: none;
+				color: inherit;
+				margin: 10px 0;
+			}
+
+			.btn-class-name:hover {
+				box-shadow: 0 0 0 5px rgba(var(--color), 0.5);
+			}
+
+			.review-container {
+				margin-top: 20px;
+				text-align: center;
+			}
+
+			.review-container input[type='text'] {
+				padding: 10px;
+				border-radius: 5px;
+				border: none;
+				width: 80%;
+				margin-bottom: 10px;
+			}
+
+			.stars {
+				display: flex;
+				justify-content: center;
+				gap: 10px;
+				margin-bottom: 20px;
+			}
+
+			.stars label {
+				font-size: 2em;
+				color: gold;
+				cursor: pointer;
+			}
+
+			.stars input[type='radio'] {
+				display: none;
+			}
+
+			.client-reviews {
+				background-color: rgba(255, 255, 255, 0.2);
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+				max-width: 600px;
+				margin: 20px auto;
+			}
+
+			.client-reviews h2 {
+				margin-bottom: 20px;
+			}
+
+			.client-reviews p {
+				margin-bottom: 10px;
+				background-color: rgba(0, 0, 0, 0.2);
+				padding: 10px;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Плаваюче меню -->
+		<div class="navbar">
+			<a href="index.html">Головна</a>
+			<a href="shop.html">Магазин</a>
+			<a href="cart.html">Кошик</a>
+			<a href="reviews.html">Відгуки</a>
+			<a href="chatbot.html">ЧатБот</a>
+		</div>
+
+		<!-- Основний контент -->
+		<div class="content">
+			<div class="welcome-container">
+				<div class="welcome-text">Відгуки наших клієнтів</div>
+				<a href="#" class="btn-class-name">Залишити Відгук</a>
+
+				<!-- Секція для введення відгуку -->
+				<div class="review-container">
+					<input type="text" placeholder="Ваш відгук" />
+					<div class="stars">
+						<input type="radio" id="star5" name="rating" value="5" />
+						<label for="star5">★</label>
+						<input type="radio" id="star4" name="rating" value="4" />
+						<label for="star4">★</label>
+						<input type="radio" id="star3" name="rating" value="3" />
+						<label for="star3">★</label>
+						<input type="radio" id="star2" name="rating" value="2" />
+						<label for="star2">★</label>
+						<input type="radio" id="star1" name="rating" value="1" />
+						<label for="star1">★</label>
+					</div>
+					<a href="#" class="btn-class-name">Надіслати Відгук</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Секція з відгуками клієнтів -->
+		<div class="client-reviews" id="reviews">
+			<h2>Відгуки клієнтів</h2>
+			<p>★ ★ ★ ★ ★ - Чудовий сервіс, швидка доставка!</p>
+			<p>★ ★ ★ ★ ☆ - Добре, але ціни могли б бути нижчими.</p>
+			<p>★ ★ ★ ★ ★ - Великий вибір товарів, дякую!</p>
+		</div>
+	</body>
+</html>

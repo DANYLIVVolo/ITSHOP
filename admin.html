@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ITShop - Панель адміністратора</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .admin-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+        .admin-container h1 {
+            margin: 0 0 20px;
+        }
+        .admin-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .admin-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4caf50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .admin-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Панель адміністратора</h1>
+        <input type="password" id="password" placeholder="Введіть пароль" />
+        <button onclick="checkPassword()">Увійти</button>
+        <div id="admin-content" style="display: none">
+            <h2>Ласкаво просимо, Адміністраторе!</h2>
+            <!-- Додайте тут контент панелі адміністратора -->
+        </div>
+    </div>
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            const adminContent = document.getElementById('admin-content');
+
+            if (password === 'yourpassword') {
+                // Замініть 'yourpassword' на ваш реальний пароль
+                adminContent.style.display = 'block';
+                document.querySelector('.admin-container').innerHTML = `
+                    <h1>Панель адміністратора</h1>
+                    <p>Вітаємо в панелі адміністратора!</p>
+                    <!-- Додайте тут контент панелі адміністратора -->
+                `;
+            } else {
+                alert('Неправильний пароль!');
+            }
+        }
+    </script>
+</body>
+</html>

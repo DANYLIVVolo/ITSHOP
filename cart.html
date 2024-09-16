@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Магічний Кошик</title>
+    <style>
+        body {
+            font-family: 'Trebuchet MS', sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #23233a);
+            color: #eaeaea;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 3.5em;
+            color: #ff4b2b;
+            margin: 0;
+            text-shadow: 0 0 10px #ff4b2b, 0 0 20px #ff4b2b, 0 0 30px #ff4b2b;
+            transition: text-shadow 0.5s ease-in-out;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        .header h1:hover {
+            text-shadow: 0 0 20px #ff4b2b, 0 0 30px #ff4b2b, 0 0 40px #ff4b2b;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2a2b3d;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .cart-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.7);
+        }
+        .cart-item img {
+            width: 120px;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            border: 3px solid #ff4b2b;
+        }
+        .cart-item img:hover {
+            transform: rotate(-10deg);
+        }
+        .cart-item-details {
+            flex: 1;
+            margin-left: 30px;
+            color: #fff;
+        }
+        .cart-item-details h2 {
+            margin: 0;
+            font-size: 2em;
+            color: #ff4b2b;
+            margin-bottom: 10px;
+        }
+        .cart-item-details p {
+            margin: 8px 0;
+            color: #c7c7db;
+        }
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            color: #ff4b2b;
+        }
+        .cart-item-quantity input {
+            width: 60px;
+            padding: 10px;
+            font-size: 1.2em;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            margin-right: 20px;
+            background-color: #38394d;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+        .cart-item-quantity input:hover {
+            background-color: #4b4c66;
+        }
+        .cart-item-quantity button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #ff4b2b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .cart-item-quantity button:hover {
+            background-color: #e03b22;
+        }
+        .cart-total {
+            text-align: right;
+            font-size: 2.5em;
+            margin-top: 40px;
+            color: #ff4b2b;
+            font-weight: 600;
+        }
+        .checkout-button {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            background-color: #ff4b2b;
+            color: white;
+            font-size: 2em;
+            border: none;
+            border-radius: 15px;
+            margin-top: 40px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .checkout-button:hover {
+            background-color: #e03b22;
+            transform: translateY(-5px);
+        }
+        .order-form {
+            display: none;
+            background-color: #2a2b3d;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease;
+        }
+        .order-form h2 {
+            margin-top: 0;
+            font-size: 2.5em;
+            color: #ff4b2b;
+            text-align: center;
+            font-weight: 700;
+        }
+        .order-form input,
+        .order-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #38394d;
+            color: #fff;
+            font-size: 1.2em;
+        }
+        .order-form button {
+            width: 100%;
+            padding: 20px;
+            background-color: #ff4b2b;
+            color: white;
+            font-size: 1.8em;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .order-form button:hover {
+            background-color: #e03b22;
+            transform: translateY(-5px);
+        }
+        .thank-you-message {
+            display: none;
+            background-color: white;
+            color: black;
+            padding: 50px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 2em;
+            margin-top: 30px;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Магічний Кошик</h1>
+        </div>
+
+        <!-- Товари -->
+        <div id="cartItems">
+            <!-- Товар 1 -->
+            <div class="cart-item">
+                <img
+                    src="https://smartmag.biz.ua/content/images/44/78x55l80nn0/33231323894416.webp"
+                    alt="MacBook Pro"
+                />
+                <div class="cart-item-details">
+                    <h2>Apple MacBook Pro 16" M2 Max Space Gray 2023</h2>
+                    <p>Ціна: 109999 грн</p>
+                    <p>Операційна система: macOS Ventura</p>
+                </div>
+                <div class="cart-item-quantity">
+                    <input type="number" value="1" min="1" max="10" />
+                    <button>Видалити</button>
+                </div>
+            </div>
+
+            <!-- Товар 2 -->
+            <div class="cart-item">
+                <img
+                    src="https://macsstore.com.ua/22009-thickbox_default/apple-ipad-pro-129-512gb-m1-wi-fi-space-gray-2021.jpg"
+                    alt="iPad Pro"
+                />
+                <div class="cart-item-details">
+                    <h2>Apple iPad Pro 12.9" M2 Wi-Fi 1TB Space Gray</h2>
+                    <p>Ціна: 59999 грн</p>
+                    <p>Діагональ: 12.9"</p>
+                </div>
+                <div class="cart-item-quantity">
+                    <input type="number" value="1" min="1" max="10" />
+                    <button>Видалити</button>
+                </div>
+            </div>
+
+            <!-- Товар 3 -->
+            <div class="cart-item">
+                <img
+                    src="https://hotline.ua/img/tx/343/3437063845.jpg"
+                    alt="iPhone 14 Pro"
+                />
+                <div class="cart-item-details">
+                    <h2>Apple iPhone 14 Pro 256GB Space Gray</h2>
+                    <p>Ціна: 39999 грн</p>
+                    <p>Діагональ: 6.1"</p>
+                </div>
+                <div class="cart-item-quantity">
+                    <input type="number" value="1" min="1" max="10" />
+                    <button>Видалити</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Загальна сума -->
+        <div class="cart-total">Загальна сума: 0 грн</div>
+
+        <!-- Кнопка для оформлення замовлення -->
+        <button class="checkout-button" id="checkoutBtn">Оформити замовлення</button>
+
+        <!-- Форма замовлення -->
+        <div class="order-form" id="orderForm">
+            <h2>Оформлення замовлення</h2>
+            <input type="text" placeholder="Ваше ім'я" required />
+            <input type="text" placeholder="Адреса доставки" required />
+            <input type="email" placeholder="Ваш e-mail" required />
+            <textarea placeholder="Додаткова інформація" rows="4"></textarea>
+            <button id="confirmOrderBtn">Підтвердити замовлення</button>
+        </div>
+
+        <!-- Повідомлення про успішне замовлення -->
+        <div class="thank-you-message" id="thankYouMessage">
+            Дякуємо за замовлення! Ми скоро з вами зв'яжемось.
+        </div>
+    </div>
+
+    <script>
+        // Логіка для оновлення загальної суми
+        const quantityInputs = document.querySelectorAll('.cart-item-quantity input');
+        quantityInputs.forEach(input => {
+            input.addEventListener('change', updateTotal);
+        });
+
+        function updateTotal() {
+            const items = document.querySelectorAll('.cart-item');
+            let total = 0;
+
+            // Якщо товарів немає, сума повинна бути 0
+            if (items.length === 0) {
+                document.querySelector('.cart-total').textContent = `Загальна сума: 0 грн`;
+                return;
+            }
+
+            items.forEach(item => {
+                const price = parseInt(
+                    item.querySelector('.cart-item-details p').textContent.replace('Ціна: ', '').replace(' грн', '')
+                );
+                const quantityInput = item.querySelector('.cart-item-quantity input');
+                let quantity = parseInt(quantityInput.value);
+
+                // Якщо кількість менше 1, встановлюємо мінімум 1 і оновлюємо інпут
+                if (quantity < 1) {
+                    quantity = 1;
+                    quantityInput.value = 1;
+                }
+
+                total += price * quantity;
+            });
+
+            // Оновлення тексту загальної суми
+            document.querySelector('.cart-total').textContent = `Загальна сума: ${total.toLocaleString()} грн`;
+        }
+
+        // Логіка для видалення товару
+        const deleteButtons = document.querySelectorAll('.cart-item-quantity button');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const cartItem = this.closest('.cart-item');
+                cartItem.remove();
+                updateTotal();
+            });
+        });
+
+        // Логіка для відображення анкети замовлення
+        document.getElementById('checkoutBtn').addEventListener('click', function () {
+            document.getElementById('orderForm').style.display = 'block';
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth',
+            });
+        });
+
+        // Логіка для підтвердження замовлення
+        document.getElementById('confirmOrderBtn').addEventListener('click', function () {
+            document.getElementById('cartItems').style.display = 'none';
+            document.querySelector('.cart-total').style.display = 'none';
+            document.getElementById('orderForm').style.display = 'none';
+            document.getElementById('thankYouMessage').style.display = 'block';
+        });
+
+        // Оновлення початкової загальної суми
+        updateTotal();
+    </script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="uk">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>ITShop - Чат Бот</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: Arial, sans-serif;
+				display: flex;
+				flex-direction: column;
+				height: 100vh;
+				background: linear-gradient(135deg, #f3f4f6, #dbe2e8);
+				color: #333;
+			}
+			.header {
+				background-color: #4a90e2;
+				color: white;
+				padding: 15px;
+				text-align: center;
+				box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+			}
+			.chat-container {
+				display: flex;
+				flex-direction: column;
+				flex: 1;
+				padding: 15px;
+			}
+			.chat-box {
+				flex: 1;
+				overflow-y: auto;
+				background-color: #ffffff;
+				border: 1px solid #ccc;
+				border-radius: 8px;
+				padding: 10px;
+				margin-bottom: 10px;
+				height: 80%;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				position: relative;
+				animation: fadeIn 1s;
+			}
+			.input-container {
+				display: flex;
+				margin-top: 10px;
+			}
+			#user-input {
+				flex: 1;
+				padding: 10px;
+				border: 1px solid #ccc;
+				border-radius: 8px;
+				margin-right: 10px;
+				font-size: 1em;
+			}
+			button {
+				padding: 10px;
+				border: none;
+				border-radius: 8px;
+				background-color: #4caf50;
+				color: white;
+				cursor: pointer;
+				font-size: 1em;
+				transition: background-color 0.3s, transform 0.3s;
+			}
+			button:hover {
+				background-color: #45a049;
+			}
+			button:active {
+				transform: scale(0.98);
+			}
+			.message {
+				padding: 10px;
+				border-radius: 8px;
+				margin-bottom: 10px;
+				max-width: 80%;
+				display: inline-block;
+				animation: slideIn 0.5s;
+			}
+			.user {
+				background-color: #d3f9d8;
+				align-self: flex-end;
+				border: 1px solid #a3d8a6;
+			}
+			.bot {
+				background-color: #e3e3e3;
+				align-self: flex-start;
+				border: 1px solid #c1c1c1;
+			}
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+			@keyframes slideIn {
+				from {
+					transform: translateX(-10px);
+					opacity: 0;
+				}
+				to {
+					transform: translateX(0);
+					opacity: 1;
+				}
+			}
+			.quick-questions {
+				display: flex;
+				flex-direction: column;
+				margin-top: 10px;
+			}
+			.quick-questions button {
+				background-color: #f5f5f5;
+				color: #333;
+				border: 1px solid #ccc;
+				margin: 5px 0;
+				padding: 10px;
+				border-radius: 5px;
+				font-size: 1em;
+				cursor: pointer;
+				transition: background-color 0.3s, color 0.3s;
+			}
+			.quick-questions button:hover {
+				background-color: #e3e3e3;
+				color: #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<h1>Чат Бот ITShop</h1>
+		</div>
+		<div class="chat-container">
+			<div class="chat-box" id="chat-box">
+				<div class="message bot">
+					Вітаємо! ${getGreeting()} Які у вас питання?
+				</div>
+			</div>
+			<div class="input-container">
+				<input type="text" id="user-input" placeholder="Ваше повідомлення..." />
+				<button onclick="sendMessage()">Відправити</button>
+			</div>
+			<div class="quick-questions">
+				<button onclick="predefinedResponse('Ціни на продукти?')">
+					Ціни на продукти?
+				</button>
+				<button onclick="predefinedResponse('Умови доставки?')">
+					Умови доставки?
+				</button>
+				<button onclick="predefinedResponse('Повернення товару?')">
+					Повернення товару?
+				</button>
+				<button onclick="predefinedResponse('Як зв\'язатися з нами?')">
+					Як зв'язатися з нами?
+				</button>
+			</div>
+		</div>
+
+		<script>
+			function getGreeting() {
+				const hour = new Date().getHours()
+				if (hour >= 6 && hour < 12) {
+					return 'Добрий ранок!'
+				} else if (hour >= 12 && hour < 18) {
+					return 'Добрий день!'
+				} else {
+					return 'Добрий вечір!'
+				}
+			}
+
+			function sendMessage() {
+				const userInput = document.getElementById('user-input')
+				const chatBox = document.getElementById('chat-box')
+				const userMessage = userInput.value.trim()
+				if (userMessage === '') return
+
+				// Додаємо повідомлення користувача до чату
+				const userMessageElement = document.createElement('div')
+				userMessageElement.classList.add('message', 'user')
+				userMessageElement.textContent = userMessage
+				chatBox.appendChild(userMessageElement)
+
+				// Очищуємо поле вводу
+				userInput.value = ''
+
+				// Визначаємо привітання та формуємо відповідь бота
+				const greeting = getGreeting()
+				let botMessage = ''
+
+				// Перевірка повідомлення та відповіді бота
+				if (
+					userMessage.toLowerCase().includes('ціна') ||
+					userMessage.toLowerCase().includes('вартість')
+				) {
+					botMessage = `${greeting} Наші ціни на продукти залежать від конкретного товару. Будь ласка, перегляньте наші ціни на сторінці "Магазин".`
+				} else if (
+					userMessage.toLowerCase().includes('доставка') ||
+					userMessage.toLowerCase().includes('умови доставки')
+				) {
+					botMessage = `${greeting} Ми пропонуємо різні варіанти доставки. Зазвичай, доставка займає від 3 до 7 днів. Більш детальну інформацію можна знайти на сторінці "Доставка".`
+				} else if (
+					userMessage.toLowerCase().includes('повернення') ||
+					userMessage.toLowerCase().includes('повернення товару')
+				) {
+					botMessage = `${greeting} Політика повернення товарів описана на нашій сторінці "Повернення товарів". Ви можете повернути товар протягом 14 днів з моменту покупки.`
+				} else if (
+					userMessage.toLowerCase().includes('контакт') ||
+					userMessage.toLowerCase().includes("зв'язатися")
+				) {
+					botMessage = `${greeting} Ви можете зв'язатися з нами через форму на сторінці "Контакт" або по електронній пошті support@itshop.com.`
+				} else if (
+					userMessage.toLowerCase().includes('адреса') ||
+					userMessage.toLowerCase().includes('де знаходиться')
+				) {
+					botMessage = `${greeting} Наша адреса: вулиця Прикладна, 123, Київ.`
+				} else if (
+					userMessage.toLowerCase().includes('робочий час') ||
+					userMessage.toLowerCase().includes('години роботи')
+				) {
+					botMessage = `${greeting} Ми працюємо з понеділка по п'ятницю з 9:00 до 18:00.`
+				} else {
+					botMessage = `${greeting} Вибачте, я не можу зрозуміти ваше питання. Спробуйте задати інше питання.`
+				}
+
+				// Додаємо повідомлення бота до чату
+				const botMessageElement = document.createElement('div')
+				botMessageElement.classList.add('message', 'bot')
+				botMessageElement.textContent = botMessage
+				chatBox.appendChild(botMessageElement)
+
+				// Прокручуємо чат до останнього повідомлення
+				chatBox.scrollTop = chatBox.scrollHeight
+			}
+
+			function predefinedResponse(question) {
+				const userInput = document.getElementById('user-input')
+				userInput.value = question
+				sendMessage()
+			}
+		</script>
+	</body>
+</html>
